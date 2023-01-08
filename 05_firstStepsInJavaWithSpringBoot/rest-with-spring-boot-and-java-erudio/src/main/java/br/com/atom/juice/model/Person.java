@@ -3,6 +3,15 @@ package br.com.atom.juice.model;
 import java.io.Serializable;
 import java.util.Objects;
 
+import jakarta.persistence.Column;
+import jakarta.persistence.Entity;
+import jakarta.persistence.GeneratedValue;
+import jakarta.persistence.GenerationType;
+import jakarta.persistence.Id;
+import jakarta.persistence.Table;
+
+@Entity
+@Table(name = "person")
 public class Person implements Serializable {
 
 	/**
@@ -10,10 +19,20 @@ public class Person implements Serializable {
 	 */
 	private static final long serialVersionUID = 1L;
 
+	@Id
+	@GeneratedValue(strategy = GenerationType.IDENTITY)
 	private Long id;
+	
+	@Column(name = "first_name", nullable = false, length = 80)
 	private String firstname;
+
+	@Column(name = "last_name", nullable = false, length = 80)
 	private String lastname;
+
+	@Column(nullable = false, length = 100)
 	private String adress;
+	
+	@Column(nullable = false, length = 10)
 	private String gender;
 
 	public Person() {
