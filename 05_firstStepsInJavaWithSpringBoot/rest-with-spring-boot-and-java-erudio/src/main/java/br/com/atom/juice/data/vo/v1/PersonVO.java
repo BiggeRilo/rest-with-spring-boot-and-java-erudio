@@ -1,44 +1,29 @@
-package br.com.atom.juice.model;
+package br.com.atom.juice.data.vo.v1;
 
 import java.io.Serializable;
 import java.util.Objects;
 
-import jakarta.persistence.Column;
-import jakarta.persistence.Entity;
-import jakarta.persistence.GeneratedValue;
-import jakarta.persistence.GenerationType;
-import jakarta.persistence.Id;
-import jakarta.persistence.Table;
-
-@Entity
-@Table(name = "person",schema = "USER_APP")
-public class Person implements Serializable {
+public class PersonVO implements Serializable {
 
 	/**
 	 * 
 	 */
 	private static final long serialVersionUID = 1L;
 
-	@Id
-	@GeneratedValue(strategy = GenerationType.IDENTITY)
 	private Long id;
-	
-	@Column(name = "first_name", nullable = false, length = 80)
+
 	private String firstname;
 
-	@Column(name = "last_name", nullable = false, length = 80)
 	private String lastname;
 
-	@Column(nullable = false, length = 100)
 	private String adress;
-	
-	@Column(nullable = false, length = 10)
+
 	private String gender;
-	
-	public Person() {
+
+	public PersonVO() {
 	}
 
-	public Person(Long id, String firstname, String lastname, String adress, String gender) {
+	public PersonVO(Long id, String firstname, String lastname, String adress, String gender) {
 
 		this.id = id;
 		this.firstname = firstname;
@@ -60,7 +45,7 @@ public class Person implements Serializable {
 			return false;
 		if (getClass() != obj.getClass())
 			return false;
-		Person other = (Person) obj;
+		PersonVO other = (PersonVO) obj;
 		return Objects.equals(adress, other.adress) && Objects.equals(firstname, other.firstname)
 				&& Objects.equals(gender, other.gender) && Objects.equals(id, other.id)
 				&& Objects.equals(lastname, other.lastname);
@@ -90,7 +75,7 @@ public class Person implements Serializable {
 		this.lastname = lastname;
 	}
 
-	public String setAddress() {
+	public String getAddress() {
 		return adress;
 	}
 
@@ -104,10 +89,6 @@ public class Person implements Serializable {
 
 	public void setGender(String gender) {
 		this.gender = gender;
-	}
-	
-	public String getAddress() {
-		return adress;
 	}
 
 }

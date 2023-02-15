@@ -1,55 +1,44 @@
-package br.com.atom.juice.model;
+package br.com.atom.juice.data.vo.v2;
 
 import java.io.Serializable;
+import java.util.Date;
 import java.util.Objects;
 
-import jakarta.persistence.Column;
-import jakarta.persistence.Entity;
-import jakarta.persistence.GeneratedValue;
-import jakarta.persistence.GenerationType;
-import jakarta.persistence.Id;
-import jakarta.persistence.Table;
-
-@Entity
-@Table(name = "person",schema = "USER_APP")
-public class Person implements Serializable {
+public class PersonVOV2 implements Serializable {
 
 	/**
 	 * 
 	 */
 	private static final long serialVersionUID = 1L;
 
-	@Id
-	@GeneratedValue(strategy = GenerationType.IDENTITY)
 	private Long id;
-	
-	@Column(name = "first_name", nullable = false, length = 80)
+
 	private String firstname;
 
-	@Column(name = "last_name", nullable = false, length = 80)
 	private String lastname;
 
-	@Column(nullable = false, length = 100)
 	private String adress;
-	
-	@Column(nullable = false, length = 10)
+
 	private String gender;
-	
-	public Person() {
+
+	private Date birthday;
+
+	public PersonVOV2() {
 	}
 
-	public Person(Long id, String firstname, String lastname, String adress, String gender) {
+	public PersonVOV2(Long id, String firstname, String lastname, String adress, String gender, Date birthday) {
 
 		this.id = id;
 		this.firstname = firstname;
 		this.lastname = lastname;
 		this.adress = adress;
 		this.gender = gender;
+		this.birthday = birthday;
 	}
 
 	@Override
 	public int hashCode() {
-		return Objects.hash(adress, firstname, gender, id, lastname);
+		return Objects.hash(adress, firstname, gender, id, lastname, birthday);
 	}
 
 	@Override
@@ -60,10 +49,11 @@ public class Person implements Serializable {
 			return false;
 		if (getClass() != obj.getClass())
 			return false;
-		Person other = (Person) obj;
+		PersonVOV2 other = (PersonVOV2) obj;
 		return Objects.equals(adress, other.adress) && Objects.equals(firstname, other.firstname)
 				&& Objects.equals(gender, other.gender) && Objects.equals(id, other.id)
-				&& Objects.equals(lastname, other.lastname);
+				&& Objects.equals(lastname, other.lastname) && Objects.equals(birthday, other.birthday);
+
 	}
 
 	public Long getId() {
@@ -90,7 +80,7 @@ public class Person implements Serializable {
 		this.lastname = lastname;
 	}
 
-	public String setAddress() {
+	public String getAddress() {
 		return adress;
 	}
 
@@ -105,9 +95,13 @@ public class Person implements Serializable {
 	public void setGender(String gender) {
 		this.gender = gender;
 	}
-	
-	public String getAddress() {
-		return adress;
+
+	public Date getBirthday() {
+		return birthday;
+	}
+
+	public void setBirthday(Date birthday) {
+		this.birthday = birthday;
 	}
 
 }
